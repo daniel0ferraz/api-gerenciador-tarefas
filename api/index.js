@@ -35,15 +35,13 @@ let tarefas = [];
  * @swagger
  * /:
  *   get:
- *     summary: Retorna mensagem da API
+ *     summary: Redireciona para documentação
  *     responses:
- *       200:
- *         description: API funcionando
+ *       302:
+ *         description: Redirecionado para /docs
  */
 app.get("/", (req, res) => {
-  res.json({
-    mensagem: "API funcionando",
-  });
+  res.redirect("/docs");
 });
 
 /**
@@ -179,6 +177,12 @@ app.delete("/tarefas/:id", (req, res) => {
   res.json({
     mensagem: "Tarefa removida",
   });
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor rodando em http://localhost:${PORT}`);
+  console.log(`Swagger disponível em http://localhost:${PORT}/docs`);
 });
 
 module.exports = app;
