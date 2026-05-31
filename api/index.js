@@ -1,5 +1,5 @@
 const express = require("express");
-const { v4: uuidv4 } = require("uuid");
+const crypto = require("crypto");
 
 const app = express();
 
@@ -38,7 +38,7 @@ app.post("/tarefas", (req, res) => {
   }
 
   const novaTarefa = {
-    id: uuidv4(),
+    id: crypto.randomUUID(),
     titulo,
     descricao,
     concluida: false,
