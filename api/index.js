@@ -1,5 +1,6 @@
 const express = require("express");
 const crypto = require("crypto");
+const path = require("path");
 
 const swaggerUi = require("swagger-ui-express");
 const swaggerJsdoc = require("swagger-jsdoc");
@@ -17,7 +18,7 @@ const swaggerOptions = {
       description: "API REST desenvolvida com Node.js e Express",
     },
   },
-  apis: ["./api/index.js"],
+  apis: [path.join(__dirname, "index.js")],
 };
 
 const swaggerSpec = swaggerJsdoc(swaggerOptions);

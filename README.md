@@ -48,6 +48,47 @@ api-gerenciador-tarefas/
 
 ---
 
+# Como Usar
+
+## Instalação
+
+1. Clone o repositório:
+```bash
+git clone <seu-repositorio>
+cd unicarioca_dev_api
+```
+
+2. Instale as dependências:
+```bash
+npm install
+```
+
+## Iniciando o Servidor
+
+Para iniciar o servidor em modo desenvolvimento:
+```bash
+npm run dev
+```
+
+O servidor estará disponível em: **http://localhost:3000**
+
+A documentação interativa (Swagger) estará em: **http://localhost:3000/docs**
+
+---
+
+# Endpoints da API
+
+| Método | Rota | Descrição |
+|--------|------|-----------|
+| GET | `/` | Redireciona para `/docs` |
+| GET | `/tarefas` | Lista todas as tarefas |
+| POST | `/tarefas` | Cria uma nova tarefa |
+| PUT | `/tarefas/:id` | Atualiza uma tarefa |
+| PATCH | `/tarefas/:id/concluir` | Marca uma tarefa como concluída |
+| DELETE | `/tarefas/:id` | Remove uma tarefa |
+
+---
+
 # Como Executar o Projeto
 
 ## 1. Clonar o repositório
