@@ -26,7 +26,6 @@ O projeto possui aplicabilidade prática, podendo ser utilizado futuramente em a
 
 * Node.js
 * Express
-* UUID
 * JavaScript
 * API REST
 * Vercel
@@ -39,53 +38,15 @@ O projeto possui aplicabilidade prática, podendo ser utilizado futuramente em a
 api-gerenciador-tarefas/
 │
 ├── api/
-│   └── index.js
+│   ├── index.js
+│   └── public/
+│       └── docs.html
 │
 ├── package.json
 ├── vercel.json
+├── .gitignore
 └── README.md
 ```
-
----
-
-# Como Usar
-
-## Instalação
-
-1. Clone o repositório:
-```bash
-git clone <seu-repositorio>
-cd unicarioca_dev_api
-```
-
-2. Instale as dependências:
-```bash
-npm install
-```
-
-## Iniciando o Servidor
-
-Para iniciar o servidor em modo desenvolvimento:
-```bash
-npm run dev
-```
-
-O servidor estará disponível em: **http://localhost:3000**
-
-A documentação interativa (Swagger) estará em: **http://localhost:3000/docs**
-
----
-
-# Endpoints da API
-
-| Método | Rota | Descrição |
-|--------|------|-----------|
-| GET | `/` | Redireciona para `/docs` |
-| GET | `/tarefas` | Lista todas as tarefas |
-| POST | `/tarefas` | Cria uma nova tarefa |
-| PUT | `/tarefas/:id` | Atualiza uma tarefa |
-| PATCH | `/tarefas/:id/concluir` | Marca uma tarefa como concluída |
-| DELETE | `/tarefas/:id` | Remove uma tarefa |
 
 ---
 
@@ -131,11 +92,27 @@ http://localhost:3000
 
 ---
 
+# Documentação da API
+
+A documentação visual da API pode ser acessada em:
+
+```bash
+http://localhost:3000/docs
+```
+
+Deploy online:
+
+```bash
+https://api-gerenciador-tarefas.vercel.app/docs
+```
+
+---
+
 # Deploy
 
 Projeto hospedado na Vercel.
 
-Exemplo:
+URL da aplicação:
 
 ```bash
 https://api-gerenciador-tarefas.vercel.app
@@ -143,50 +120,24 @@ https://api-gerenciador-tarefas.vercel.app
 
 ---
 
-# Rotas da API
+# Endpoints da API
 
-## Teste inicial
-
-### GET /
-
-Retorna mensagem informando que a API está funcionando.
-
-### Resposta
-
-```json
-{
-  "mensagem": "API funcionando"
-}
-```
+| Método | Rota                    | Descrição                   |
+| ------ | ----------------------- | --------------------------- |
+| GET    | `/`                     | Redireciona para `/docs`    |
+| GET    | `/tarefas`              | Lista todas as tarefas      |
+| POST   | `/tarefas`              | Cria uma nova tarefa        |
+| PUT    | `/tarefas/:id`          | Atualiza uma tarefa         |
+| PATCH  | `/tarefas/:id/concluir` | Marca tarefa como concluída |
+| DELETE | `/tarefas/:id`          | Remove uma tarefa           |
 
 ---
 
-# Listar tarefas
+# Exemplos de Uso
 
-## GET /tarefas
+## Criar tarefa
 
-Retorna todas as tarefas cadastradas.
-
-### Exemplo de resposta
-
-```json
-[
-  {
-    "id": "123",
-    "titulo": "Estudar Node.js",
-    "descricao": "Aprender Express",
-    "concluida": false
-  }
-]
-```
-
----
-
-# Criar tarefa
-
-## POST /tarefas
-
-### Body
+### POST `/tarefas`
 
 ```json
 {
@@ -208,11 +159,26 @@ Retorna todas as tarefas cadastradas.
 
 ---
 
-# Atualizar tarefa
+## Listar tarefas
 
-## PUT /tarefas/:id
+### GET `/tarefas`
 
-### Body
+```json
+[
+  {
+    "id": "123",
+    "titulo": "Estudar Node.js",
+    "descricao": "Aprender Express",
+    "concluida": false
+  }
+]
+```
+
+---
+
+## Atualizar tarefa
+
+### PUT `/tarefas/:id`
 
 ```json
 {
@@ -223,19 +189,38 @@ Retorna todas as tarefas cadastradas.
 
 ---
 
-# Concluir tarefa
+## Concluir tarefa
 
-## PATCH /tarefas/:id/concluir
+### PATCH `/tarefas/:id/concluir`
 
-Marca uma tarefa como concluída.
+```json
+{
+  "mensagem": "Tarefa concluída com sucesso"
+}
+```
 
 ---
 
-# Remover tarefa
+## Remover tarefa
 
-## DELETE /tarefas/:id
+### DELETE `/tarefas/:id`
 
-Remove uma tarefa pelo ID.
+```json
+{
+  "mensagem": "Tarefa removida com sucesso"
+}
+```
+
+---
+
+# Validações Implementadas
+
+A API possui validações para:
+
+* título obrigatório
+* descrição obrigatória
+* verificação de tarefa existente
+* tratamento de erro 404
 
 ---
 
@@ -249,144 +234,44 @@ A API pode ser testada utilizando:
 
 ---
 
-# Exemplo de Fluxo de Teste
+# Conceitos Aplicados
 
-## 1. Criar tarefa
+Durante o desenvolvimento foram utilizados conceitos importantes de backend, como:
 
-```http
-POST /tarefas
-```
-
----
-
-## 2. Listar tarefas
-
-```http
-GET /tarefas
-```
-
----
-
-## 3. Atualizar tarefa
-
-```http
-PUT /tarefas/:id
-```
-
----
-
-## 4. Concluir tarefa
-
-```http
-PATCH /tarefas/:id/concluir
-```
-
----
-
-## 5. Remover tarefa
-
-```http
-DELETE /tarefas/:id
-```
+* rotas REST
+* métodos HTTP
+* middleware
+* manipulação de JSON
+* validações
+* organização de API
+* deploy em nuvem
 
 ---
 
 # Apresentação do Projeto
 
-## Introdução
-
-Olá professor.
-
-Meu nome é Daniel Ferraz Coelho.
-
-O projeto desenvolvido para a disciplina Projeto de Extensão em Web Backend consiste em uma API REST para gerenciamento de tarefas.
-
-A aplicação foi desenvolvida utilizando Node.js e Express.
-
----
-
-# Problema Identificado
-
-Muitas pessoas possuem dificuldade em organizar atividades do dia a dia e acompanhar tarefas pendentes.
-
-Pensando nisso, foi desenvolvida uma API capaz de cadastrar, listar, atualizar, concluir e remover tarefas.
-
----
-
-# Tecnologias Utilizadas
-
-As principais tecnologias utilizadas foram:
-
-* Node.js
-* Express
-* UUID
-* API REST
-* Vercel para deploy da aplicação
-
----
-
-# Estrutura do Projeto
-
-O projeto foi organizado de forma simples para facilitar manutenção e entendimento.
-
-A aplicação possui:
-
-* arquivo principal da API
-* rotas REST
-* validações
-* manipulação de dados
-
----
-
-# Explicação dos Métodos HTTP
-
-## GET
-
-Utilizado para listar informações.
-
-## POST
-
-Utilizado para criar novas tarefas.
-
-## PUT
-
-Utilizado para atualizar tarefas.
-
-## PATCH
-
-Utilizado para alterar parcialmente uma tarefa.
-
-## DELETE
-
-Utilizado para remover tarefas.
-
----
-
-# Demonstração
-
 Durante a apresentação serão demonstrados:
 
-* criação de tarefa
+* criação de tarefas
 * listagem de tarefas
-* atualização
-* conclusão de tarefa
-* remoção
-
-Todos os testes serão realizados utilizando o Postman.
+* atualização de tarefas
+* conclusão de tarefas
+* remoção de tarefas
+* documentação HTML da API
+* deploy funcionando na Vercel
 
 ---
 
-# Conclusão
+# Melhorias Futuras
 
-Com este projeto foi possível aplicar os principais conceitos estudados na disciplina, como:
+O projeto pode evoluir futuramente com:
 
-* criação de APIs REST
-* utilização de métodos HTTP
-* organização backend
-* deploy de aplicações
-* manipulação de dados
-
-O projeto também pode ser expandido futuramente com autenticação de usuários e banco de dados.
+* banco de dados
+* autenticação de usuários
+* login com JWT
+* integração com frontend
+* persistência de dados
+* filtros de tarefas
 
 ---
 
@@ -394,22 +279,6 @@ O projeto também pode ser expandido futuramente com autenticação de usuários
 
 Daniel Ferraz Coelho
 
----
+Projeto acadêmico desenvolvido para a disciplina:
 
-# Links Úteis
-
-## Node.js
-
-[https://nodejs.org](https://nodejs.org)
-
-## Express
-
-[https://expressjs.com](https://expressjs.com)
-
-## Vercel
-
-[https://vercel.com](https://vercel.com)
-
-## Postman
-
-[https://www.postman.com](https://www.postman.com)
+**Projeto de Extensão em Web Backend**
