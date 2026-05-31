@@ -1,9 +1,28 @@
 const express = require("express");
 const crypto = require("crypto");
 
+const swaggerUi = require("swagger-ui-express");
+const swaggerJsdoc = require("swagger-jsdoc");
+
 const app = express();
 
 app.use(express.json());
+
+const swaggerOptions = {
+  definition: {
+    openapi: "3.0.0",
+    info: {
+      title: "API Gerenciador de Tarefas",
+      version: "1.0.0",
+      description: "API REST desenvolvida com Node.js e Express",
+    },
+  },
+  apis: ["./api/index.js"],
+};
+
+const swaggerSpec = swaggerJsdoc(swaggerOptions);
+
+app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.url}`);
@@ -12,16 +31,46 @@ app.use((req, res, next) => {
 
 let tarefas = [];
 
+/**
+ * @swagger
+ * /:
+ *   get:
+ *     summary: Retorna mensagem da API
+ *     responses:
+ *       200:
+ *         description: API funcionando
+ */
+
 app.get("/", (req, res) => {
   res.json({
     mensagem: "API funcionando",
   });
 });
 
+/**
+ * @swagger
+ * /tarefas:
+ *   get:
+ *     summary: Lista todas as tarefas
+ *     responses:
+ *       200:
+ *         description: Lista de tarefas
+ */
 app.get("/tarefas", (req, res) => {
   res.json(tarefas);
 });
 
+/**
+ * @swagger
+ * /tarefas:
+ *   post:
+ *     summary: Cria uma nova tarefa
+ *     requestBody:
+ *       required: true
+ *     responses:
+ *       201:
+ *         description: Tarefa criada
+ */
 app.post("/tarefas", (req, res) => {
   const { titulo, descricao } = req.body;
 
@@ -50,6 +99,25 @@ app.post("/tarefas", (req, res) => {
   res.status(201).json(novaTarefa);
 });
 
+/**
+ * @swagger
+ * /tarefas/{id}:
+ *   put:
+ *     summary: Atualiza uma tarefa existente
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     requestBody:
+ *       required: true
+ *     responses:
+ *       200:
+ *         description: Tarefa atualizada
+ *       404:
+ *         description: Tarefa não encontrada
+ */
 app.put("/tarefas/:id", (req, res) => {
   const { id } = req.params;
   const { titulo, descricao } = req.body;
@@ -68,6 +136,23 @@ app.put("/tarefas/:id", (req, res) => {
   res.json(tarefa);
 });
 
+/**
+ * @swagger
+ * /tarefas/{id}/concluir:
+ *   patch:
+ *     summary: Conclui uma tarefa existente
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Tarefa concluída
+ *       404:
+ *         description: Tarefa não encontrada
+ */
 app.patch("/tarefas/:id/concluir", (req, res) => {
   const { id } = req.params;
 
@@ -83,6 +168,9 @@ app.patch("/tarefas/:id/concluir", (req, res) => {
 
   res.json(tarefa);
 });
+
+
+
 
 app.delete("/tarefas/:id", (req, res) => {
   const { id } = req.params;

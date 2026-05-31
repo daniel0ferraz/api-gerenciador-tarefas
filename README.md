@@ -12,11 +12,11 @@ Muitas pessoas possuem dificuldade em organizar tarefas e acompanhar atividades 
 
 Pensando nisso, foi desenvolvida uma API capaz de:
 
-- cadastrar tarefas
-- listar tarefas
-- atualizar tarefas
-- concluir tarefas
-- remover tarefas
+* cadastrar tarefas
+* listar tarefas
+* atualizar tarefas
+* concluir tarefas
+* remover tarefas
 
 O projeto possui aplicabilidade prática, podendo ser utilizado futuramente em aplicativos de produtividade e organização pessoal.
 
@@ -24,12 +24,12 @@ O projeto possui aplicabilidade prática, podendo ser utilizado futuramente em a
 
 # Tecnologias Utilizadas
 
-- Node.js
-- Express
-- UUID
-- JavaScript
-- API REST
-- Vercel
+* Node.js
+* Express
+* UUID
+* JavaScript
+* API REST
+* Vercel
 
 ---
 
@@ -202,9 +202,9 @@ Remove uma tarefa pelo ID.
 
 A API pode ser testada utilizando:
 
-- Postman
-- Insomnia
-- Thunder Client
+* Postman
+* Insomnia
+* Thunder Client
 
 ---
 
@@ -276,11 +276,11 @@ Pensando nisso, foi desenvolvida uma API capaz de cadastrar, listar, atualizar, 
 
 As principais tecnologias utilizadas foram:
 
-- Node.js
-- Express
-- UUID
-- API REST
-- Vercel para deploy da aplicação
+* Node.js
+* Express
+* UUID
+* API REST
+* Vercel para deploy da aplicação
 
 ---
 
@@ -290,10 +290,10 @@ O projeto foi organizado de forma simples para facilitar manutenção e entendim
 
 A aplicação possui:
 
-- arquivo principal da API
-- rotas REST
-- validações
-- manipulação de dados
+* arquivo principal da API
+* rotas REST
+* validações
+* manipulação de dados
 
 ---
 
@@ -325,11 +325,11 @@ Utilizado para remover tarefas.
 
 Durante a apresentação serão demonstrados:
 
-- criação de tarefa
-- listagem de tarefas
-- atualização
-- conclusão de tarefa
-- remoção
+* criação de tarefa
+* listagem de tarefas
+* atualização
+* conclusão de tarefa
+* remoção
 
 Todos os testes serão realizados utilizando o Postman.
 
@@ -339,11 +339,11 @@ Todos os testes serão realizados utilizando o Postman.
 
 Com este projeto foi possível aplicar os principais conceitos estudados na disciplina, como:
 
-- criação de APIs REST
-- utilização de métodos HTTP
-- organização backend
-- deploy de aplicações
-- manipulação de dados
+* criação de APIs REST
+* utilização de métodos HTTP
+* organização backend
+* deploy de aplicações
+* manipulação de dados
 
 O projeto também pode ser expandido futuramente com autenticação de usuários e banco de dados.
 
