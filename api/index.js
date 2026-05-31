@@ -23,7 +23,15 @@ const swaggerOptions = {
 
 const swaggerSpec = swaggerJsdoc(swaggerOptions);
 
-app.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+const swaggerUiOptions = {
+  customSiteTitle: "API Gerenciador de Tarefas",
+};
+
+app.use(
+  "/docs",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerSpec, swaggerUiOptions)
+);
 
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.url}`);
@@ -170,6 +178,21 @@ app.patch("/tarefas/:id/concluir", (req, res) => {
 
 
 
+/**
+ * @swagger
+ * /tarefas/{id}:
+ *   delete:
+ *     summary: Remove uma tarefa
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *     responses:
+ *       200:
+ *         description: Tarefa removida
+ */
 app.delete("/tarefas/:id", (req, res) => {
   const { id } = req.params;
 
@@ -178,12 +201,6 @@ app.delete("/tarefas/:id", (req, res) => {
   res.json({
     mensagem: "Tarefa removida",
   });
-});
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Servidor rodando em http://localhost:${PORT}`);
-  console.log(`Swagger disponível em http://localhost:${PORT}/docs`);
 });
 
 module.exports = app;
