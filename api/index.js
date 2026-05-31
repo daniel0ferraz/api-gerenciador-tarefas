@@ -5,8 +5,12 @@ const app = express();
 
 app.use(express.json());
 
+app.use((req, res, next) => {
+  console.log(`${req.method} ${req.url}`);
+  next();
+});
+
 let tarefas = [];
-const PORT = 3000;
 
 app.get("/", (req, res) => {
   res.json({
@@ -21,9 +25,15 @@ app.get("/tarefas", (req, res) => {
 app.post("/tarefas", (req, res) => {
   const { titulo, descricao } = req.body;
 
-  if (!titulo) {
+  if (!titulo || titulo.trim() === "") {
     return res.status(400).json({
-      erro: "Título obrigatório",
+      erro: "O título é obrigatório",
+    });
+  }
+
+  if (!descricao || descricao.trim() === "") {
+    return res.status(400).json({
+      erro: "A descrição é obrigatória",
     });
   }
 
@@ -82,10 +92,6 @@ app.delete("/tarefas/:id", (req, res) => {
   res.json({
     mensagem: "Tarefa removida",
   });
-});
-
-app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
 });
 
 module.exports = app;
