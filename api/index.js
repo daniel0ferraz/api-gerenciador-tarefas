@@ -40,7 +40,6 @@ let tarefas = [];
  *       200:
  *         description: API funcionando
  */
-
 app.get("/", (req, res) => {
   res.json({
     mensagem: "API funcionando",
